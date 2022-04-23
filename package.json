@@ -1,5 +1,5 @@
 {
-  "name": "@stipsan/is-hotkey",
+  "name": "is-hotkey-esm",
   "description": "Check whether a browser event matches a hotkey.",
   "version": "0.2.0",
   "license": "MIT",
