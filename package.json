@@ -1,20 +1,25 @@
 {
-  "name": "is-hotkey",
+  "name": "@stipsan/is-hotkey",
   "description": "Check whether a browser event matches a hotkey.",
   "version": "0.2.0",
   "license": "MIT",
-  "repository": "git://github.com/ianstormtaylor/is-hotkey.git",
+  "repository": "https://github.com/stipsan/is-hotkey",
   "main": "./lib/index.js",
+  "module": "./src/index.js",
+  "exports": {
+    ".": "./src/index.js"
+  },
   "scripts": {
     "build": "babel ./src --out-dir ./lib",
     "build:umd": "babel --plugins transform-es2015-modules-umd ./src -o ./lib/is-hotkey.umd.js",
     "clean": "rm -rf ./lib ./node_modules",
     "prepublish": "yarn run build && yarn run build:umd",
     "release": "np",
-    "test": "yarn run build && mocha",
+    "test": "yarn run build && mocha && package-check",
     "watch": "babel ./lib --out-dir ./lib --watch"
   },
   "devDependencies": {
+    "@skypack/package-check": "^0.2.2",
     "babel-cli": "^6.10.1",
     "babel-plugin-transform-es2015-modules-umd": "^6.24.1",
     "babel-preset-env": "^1.6.1",
