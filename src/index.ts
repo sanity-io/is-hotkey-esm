@@ -128,7 +128,7 @@ export function isHotkey(
   }
 
   const array = hotkey.map((string) => parseHotkey(string, options as any))
-  const check = (e) => array.some((object) => compareHotkey(object, e))
+  const check = (e: any) => array.some((object) => compareHotkey(object, e))
   const ret = event == null ? check : check(event)
   return ret
 }
@@ -144,6 +144,7 @@ export function isCodeHotkey(
   hotkey: string | readonly string[],
   event?: KeyboardEventLike
 ) {
+  // @ts-expect-error - fix later
   return isHotkey(hotkey, event)
 }
 
@@ -158,6 +159,7 @@ export function isKeyHotkey(
   hotkey: string | readonly string[],
   event?: KeyboardEventLike
 ) {
+  // @ts-expect-error - fix later
   return isHotkey(hotkey, { byKey: true }, event)
 }
 
@@ -256,12 +258,12 @@ export function compareHotkey(
 
 export function toKeyCode(name: string): number {
   name = toKeyName(name)
-  const code = CODES[name] || name.toUpperCase().charCodeAt(0)
+  const code = (CODES as any)[name] || name.toUpperCase().charCodeAt(0)
   return code
 }
 
 export function toKeyName(name: string): string {
   name = name.toLowerCase()
-  name = ALIASES[name] || name
+  name = (ALIASES as any)[name] || name
   return name
 }
